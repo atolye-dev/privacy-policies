@@ -5,57 +5,241 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Gizlilik Politikası - Diabetes Control</title>
     <style>
+        :root {
+            color-scheme: light;
+            --bg: #f6f8fb;
+            --surface: #ffffff;
+            --surface-soft: #f9fafb;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --heading: #111827;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --border: #e5e7eb;
+            --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 720px;
-            margin: 40px auto;
-            padding: 0 20px;
-            line-height: 1.6;
-            color: #333;
+            margin: 0;
+            min-height: 100vh;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background:
+                    radial-gradient(circle at top left, rgba(37, 99, 235, 0.10), transparent 34rem),
+                    linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, var(--bg) 100%);
         }
-        h1, h2 {
-            color: #2c3e50;
-        }
+
         a {
-            color: #2980b9;
+            color: var(--primary);
             text-decoration: none;
+            font-weight: 600;
         }
+
         a:hover {
+            color: var(--primary-dark);
             text-decoration: underline;
         }
-        footer {
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #777;
+
+        .page-shell {
+            width: min(100%, 1040px);
+            margin: 0 auto;
+            padding: 48px 20px;
+        }
+
+        .page-header {
+            margin-bottom: 28px;
+            padding: 36px;
+            border: 1px solid rgba(37, 99, 235, 0.12);
+            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, 0.78);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+        }
+
+        .page-header h1 {
+            margin: 0;
+            color: var(--heading);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.15;
+            letter-spacing: -0.04em;
+        }
+
+        .page-header p {
+            margin: 12px 0 0;
+            color: var(--muted);
+        }
+
+        .policy-main {
+            display: grid;
+            gap: 20px;
+        }
+
+        .policy-card,
+        .language.card,
+        .language {
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+        }
+
+        .policy-card + .policy-card,
+        .language + .language {
+            margin-top: 0;
+        }
+
+        section {
+            margin: 0 0 22px;
+        }
+
+        section:last-child,
+        .policy-card > :last-child,
+        .language > :last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            color: var(--heading);
+            font-size: 1.25rem;
+            line-height: 1.35;
+            letter-spacing: -0.015em;
+        }
+
+        p {
+            margin: 0 0 16px;
+        }
+
+        ul {
+            margin: 0 0 16px 1.2rem;
+            padding: 0;
+        }
+
+        li + li {
+            margin-top: 8px;
+        }
+
+        strong {
+            color: var(--heading);
+        }
+
+        hr {
+            width: 100%;
+            border: 0;
+            border-top: 1px solid var(--border);
+            margin: 20px 0 0;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .lang {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button.lang {
+            appearance: none;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            padding: 10px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            font: inherit;
+            line-height: 1;
+            transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+        }
+
+        button.lang:hover {
+            border-color: rgba(37, 99, 235, 0.45);
+            box-shadow: 0 8px 18px rgba(37, 99, 235, 0.10);
+            transform: translateY(-1px);
+        }
+
+        button.lang.active {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .page-footer,
+        .last-updated {
+            margin-top: 28px;
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.72);
+            color: var(--muted);
             text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .page-footer p,
+        .last-updated p {
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .page-shell {
+                padding: 24px 14px;
+            }
+
+            .page-header,
+            .policy-card,
+            .language.card,
+            .language {
+                padding: 22px;
+                border-radius: 18px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Gizlilik Politikası</h1>
-
-    <p><strong>Diabetes Control</strong> uygulaması olarak, kullanıcılarımızın gizliliği bizim için önemlidir. Bu gizlilik politikası, uygulamamızda toplanan veriler ve bu verilerin nasıl kullanıldığı hakkında bilgi verir.</p>
-
-    <h2>Toplanan Veriler</h2>
-    <p>Uygulamamız, kullanıcıların kan şekeri ölçümleri gibi sağlık verilerini kaydetmelerine olanak tanır. Bu veriler yalnızca kullanıcının cihazında saklanır ve uygulama tarafından otomatik olarak paylaşılmaz.</p>
-
-    <h2>Veri Paylaşımı</h2>
-    <p>Kullanıcılar, istedikleri takdirde verilerini dışa aktarabilir veya paylaşabilir. Bu paylaşımlar kullanıcı kontrolünde olup, uygulama tarafından otomatik olarak yapılmaz.</p>
-
-    <h2>Veri Güvenliği</h2>
-    <p>Verilerinizin güvenliği için gerekli tüm önlemleri almaktayız. Ancak, internet üzerinden veri iletimi her zaman tamamen güvenli olmayabilir. Lütfen hassas verilerinizi paylaşırken dikkatli olunuz.</p>
-
-    <h2>Üçüncü Taraf Bağlantıları</h2>
-    <p>Uygulamamız doğrudan üçüncü taraf hizmetlerle veri paylaşmaz. Ancak kullanıcıların paylaştığı veriler, seçtikleri platformların gizlilik politikalarına tabidir.</p>
-
-    <h2>Gizlilik Politikası Değişiklikleri</h2>
-    <p>Gizlilik politikamızda zaman zaman değişiklikler yapabiliriz. Değişiklikler bu sayfada yayınlanacaktır. Lütfen periyodik olarak kontrol ediniz.</p>
-
-    <h2>İletişim</h2>
-    <p>Gizlilik politikamızla ilgili sorularınız için lütfen <a href="mailto:destek.atolye@gmail.com">destek.atolye@gmail.com</a> adresinden bizimle iletişime geçin.</p>
-
-    <footer>
-        &copy; 2025 Diabetes Control
+<div class="page-shell">
+    <header class="page-header">
+        <h1>Gizlilik Politikası</h1>
+    </header>
+    <main class="policy-main">
+        <article class="policy-card">
+            <p><strong>Diabetes Control</strong> uygulaması olarak, kullanıcılarımızın gizliliği bizim için önemlidir. Bu gizlilik politikası, uygulamamızda toplanan veriler ve bu verilerin nasıl kullanıldığı hakkında bilgi verir.</p>
+            <h2>Toplanan Veriler</h2>
+            <p>Uygulamamız, kullanıcıların kan şekeri ölçümleri gibi sağlık verilerini kaydetmelerine olanak tanır. Bu veriler yalnızca kullanıcının cihazında saklanır ve uygulama tarafından otomatik olarak paylaşılmaz.</p>
+            <h2>Veri Paylaşımı</h2>
+            <p>Kullanıcılar, istedikleri takdirde verilerini dışa aktarabilir veya paylaşabilir. Bu paylaşımlar kullanıcı kontrolünde olup, uygulama tarafından otomatik olarak yapılmaz.</p>
+            <h2>Veri Güvenliği</h2>
+            <p>Verilerinizin güvenliği için gerekli tüm önlemleri almaktayız. Ancak, internet üzerinden veri iletimi her zaman tamamen güvenli olmayabilir. Lütfen hassas verilerinizi paylaşırken dikkatli olunuz.</p>
+            <h2>Üçüncü Taraf Bağlantıları</h2>
+            <p>Uygulamamız doğrudan üçüncü taraf hizmetlerle veri paylaşmaz. Ancak kullanıcıların paylaştığı veriler, seçtikleri platformların gizlilik politikalarına tabidir.</p>
+            <h2>Veri Silme Süreci</h2>
+            <p>Uygulamada kaydedilen kan şekeri ölçümleri ve ilgili sağlık verileri yalnızca kullanıcının cihazında yerel olarak saklanır. Bu veriler harici sunucularımıza gönderilmez ve tarafımızdan uzaktan erişilemez.</p>
+            <p>Kullanıcılar, uygulamada kayıtlı yerel verilerini cihaz ayarlarından uygulama verilerini temizleyerek veya uygulamayı cihazlarından kaldırarak silebilir.</p>
+            <p>Veri silme süreciyle ilgili destek almak veya veri silme talebi göndermek isteyen kullanıcılar, <a href="mailto:destek.atolye@gmail.com">destek.atolye@gmail.com</a> adresine e-posta gönderebilir. E-posta konusu olarak “Diabetes Control Veri Silme Talebi” yazılması önerilir.</p>
+            <h2>Gizlilik Politikası Değişiklikleri</h2>
+            <p>Gizlilik politikamızda zaman zaman değişiklikler yapabiliriz. Değişiklikler bu sayfada yayınlanacaktır. Lütfen periyodik olarak kontrol ediniz.</p>
+            <h2>İletişim</h2>
+            <p>Gizlilik politikamızla ilgili sorularınız için lütfen <a href="mailto:destek.atolye@gmail.com">destek.atolye@gmail.com</a> adresinden bizimle iletişime geçin.</p>
+        </article>
+    </main>
+    <footer class="page-footer">
+        © 2025 Diabetes Control
     </footer>
+</div>
 </body>
 </html>
